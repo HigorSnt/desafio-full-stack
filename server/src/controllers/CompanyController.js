@@ -30,4 +30,17 @@ module.exports = {
 
     return res.json(company);
   },
+
+  async index(req, res) {
+    const opts = [{ path: 'employees' }, { path: 'units' }];
+
+    let companies = await Company.find({});
+    companies = await Company.populate(companies, opts);
+    companies = await Company.populate(companies, [
+      { path: 'units.active' },
+      { path: 'units.active.responsible' },
+    ]);
+
+    return res.json(companies);
+  },
 };

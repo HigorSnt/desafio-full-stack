@@ -4,8 +4,8 @@ const Unit = require('../models/Unit');
 
 module.exports = {
   async store(req, res) {
+    const { filename } = req.file;
     const {
-      image,
       name,
       description,
       model,
@@ -17,7 +17,7 @@ module.exports = {
     const { unitId } = req.params;
 
     let active = await Active.create({
-      image,
+      image: filename,
       name,
       description,
       status,

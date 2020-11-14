@@ -1,3 +1,6 @@
+# upload folder
+uploads/
+
 # Logs
 logs
 *.log
