@@ -25,7 +25,7 @@ const ActiveSchema = new mongoose.Schema(
 );
 
 ActiveSchema.virtual('imageUrl').get(function () {
-  return `https://tractian-challenge-fullstack.herokuapp.com/files/${image}`;
+  return `https://tractian-challenge-fullstack.herokuapp.com/files/${this.image}`;
 });
 
 module.exports = mongoose.model('Active', ActiveSchema);

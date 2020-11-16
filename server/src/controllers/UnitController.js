@@ -1,5 +1,6 @@
 const Unit = require('../models/Unit');
 const Company = require('../models/Company');
+const { show } = require('./CompanyController');
 
 module.exports = {
   async store(req, res) {
@@ -13,5 +14,15 @@ module.exports = {
     company.save();
 
     return res.status(201).json(unit);
+  },
+
+  async show(req, res) {
+    const { unitId } = req.params;
+
+    let unit = await Unit.findById(unitId);
+    unit = await Unit.populate(unit, 'active');
+    unit = await Unit.populate(unit, 'active.responsible');
+
+    return res.json(unit);
   },
 };

@@ -16,6 +16,7 @@ routes.get('/companies/:companyId', CompanyController.show);
 routes.get('/companies/:companyId/employees', CompanyController.getEmployees);
 routes.post('/companies/:companyId/users', UserController.store);
 routes.post('/companies/:companyId/units', UnitController.store);
+routes.get('/units/:unitId', UnitController.show);
 routes.post(
   '/units/:unitId/actives',
   upload.single('image'),
