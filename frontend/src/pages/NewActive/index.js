@@ -21,7 +21,7 @@ function NewActive() {
   const [model, setModel] = useState('');
   const [status, setStatus] = useState('');
   const [healthscore, setHealthscore] = useState();
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [responsible, setResponsible] = useState('');
   const [employees, setEmployees] = useState([]);
   const statusOptions = [
@@ -32,10 +32,6 @@ function NewActive() {
 
   useEffect(() => getCompanyEmployees(), []);
 
-  const preview = useMemo(() => {
-    return image ? URL.createObjectURL(image) : null;
-  }, [image]);
-
   async function getCompanyEmployees() {
     let e = await getEmployees(companyId);
 
@@ -43,14 +39,15 @@ function NewActive() {
   }
 
   async function save() {
-    const data = new FormData();
-    data.append('name', name);
-    data.append('description', description);
-    data.append('model', model);
-    data.append('healthscore', healthscore);
-    data.append('image', image);
-    data.append('status', status);
-    data.append('responsible', responsible);
+    const data = {
+      name,
+      description,
+      model,
+      healthscore,
+      image,
+      status,
+      responsible,
+    };
 
     await createActive(unitId, data);
     history.push('/company');
@@ -128,14 +125,14 @@ function NewActive() {
               </Option>
             ))}
           </Select>
-          <label
+          <label htmlFor="image">URL da imagem do ativo:</label>
+          <Input
+            placeholder="Digite uma URL"
+            value={image}
             id="image"
-            style={{ backgroundImage: `url(${preview})` }}
-            className={image ? 'has-image' : ''}
-          >
-            <input type="file" onChange={(event) => setImage(event.target.files[0])} />
-            <CameraOutlined style={{ fontSize: 40 }} />
-          </label>
+            style={{ marginTop: 10, marginBottom: 10 }}
+            onChange={(e) => setImage(e.target.value)}
+          />
           <Button onClick={save}>Cadastrar</Button>
         </form>
       </Card>

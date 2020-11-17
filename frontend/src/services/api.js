@@ -38,3 +38,7 @@ export const getEmployees = async (companyId) => {
 export const createActive = async (unitId, active) => {
   return await api.post(`/units/${unitId}/actives`, active);
 };
+
+export const createEmployee = async (companyId, user) => {
+  return await api.post(`/companies/${companyId}/users`, user);
+};

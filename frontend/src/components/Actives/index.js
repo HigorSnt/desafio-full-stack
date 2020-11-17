@@ -13,7 +13,7 @@ function Actives({ active }) {
           key={index.toString()}
           hoverable
           style={{ display: 'flex', alignItems: 'center', marginBottom: 30 }}
-          cover={<img src={`${item.imageUrl}`} alt={item.name} style={{ width: 250 }} />}
+          cover={<img src={`${item.image}`} alt={item.name} style={{ width: 250 }} />}
         >
           <p>
             <strong>Nome:</strong> {' ' + item.name}

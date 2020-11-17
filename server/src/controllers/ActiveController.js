@@ -1,10 +1,8 @@
 const Active = require('../models/Active');
-const { update } = require('../models/Unit');
 const Unit = require('../models/Unit');
 
 module.exports = {
   async store(req, res) {
-    const { filename } = req.file;
     const {
       name,
       description,
@@ -12,12 +10,13 @@ module.exports = {
       responsible,
       status,
       healthscore,
+      image,
     } = req.body;
 
     const { unitId } = req.params;
 
     let active = await Active.create({
-      image: filename,
+      image,
       name,
       description,
       status,

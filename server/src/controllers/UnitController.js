@@ -1,6 +1,5 @@
 const Unit = require('../models/Unit');
 const Company = require('../models/Company');
-const { show } = require('./CompanyController');
 
 module.exports = {
   async store(req, res) {

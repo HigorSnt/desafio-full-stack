@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 
 import CompanyContext from './contexts/CompanyContext';
 import { companyReducer } from './reducers';
@@ -15,13 +15,13 @@ function Routes() {
 
   return (
     <CompanyContext.Provider value={{ state, dispatch }}>
-      <BrowserRouter>
+      <HashRouter basename="/">
         <Route path="/" exact component={ListCompanies} />
         <Route path="/register" component={RegisterCompany} />
         <Route path="/company" exact component={CompanyView} />
         <Route path="/company/unit" exact component={UnitView} />
         <Route path="/company/unit/active" exact component={NewActive} />
-      </BrowserRouter>
+      </HashRouter>
     </CompanyContext.Provider>
   );
 }

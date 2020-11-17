@@ -18,7 +18,7 @@ function Units() {
 
   const history = useHistory();
 
-  useEffect(() => getUnits());
+  useEffect(() => getUnits(), [register]);
 
   async function getUnits() {
     let c = await getCompany(companyId);
